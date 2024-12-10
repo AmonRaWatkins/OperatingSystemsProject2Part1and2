@@ -1,0 +1,16 @@
+CC = gcc
+CFLAGS = -lpthread -std=c99 -Wall
+
+all: main
+
+main: BENSCHILLIBOWL.o main.o
+	$(CC) -o main BENSCHILLIBOWL.o main.o $(CFLAGS)
+
+BENSCHILLIBOWL.o: BENSCHILLIBOWL.c BENSCHILLIBOWL.h
+	$(CC) -c BENSCHILLIBOWL.c -o BENSCHILLIBOWL.o $(CFLAGS)
+
+main.o: main.c BENSCHILLIBOWL.h
+	$(CC) -c main.c -o main.o $(CFLAGS)
+
+clean:
+	rm -f *.o main
